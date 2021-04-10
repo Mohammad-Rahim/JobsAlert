@@ -1,0 +1,10 @@
+#!/bin/sh
+'''exec' "/home/suraj/Downloads/my_blog(By Arjun )-20210318T074416Z-001/my_blog(By Arjun )/env/bin/python3" "$0" "$@"
+' '''
+# -*- coding: utf-8 -*-
+import re
+import sys
+from pip._internal.cli.main import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
