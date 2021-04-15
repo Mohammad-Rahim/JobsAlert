@@ -2,16 +2,22 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserProfileForm
-
+from icecream import ic
 # Create your views here.
 
 def register(request):
+    register_personnel=request.GET.get('register_personnel')
+    register_organization=request.GET.get('register_organization')
+    ic(
+        register_personnel,
+        register_organization
+    )
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         profile_form = UserProfileForm(request.POST)
         if form.is_valid():
             user = form.save()
-
+        
             profile_form = UserProfileForm(request.POST, instance=user.profile)
             if profile_form.is_valid():
                 profile_form.save()
@@ -31,7 +37,11 @@ def register(request):
             # return redirect('login')
     else:
         form = UserRegisterForm()
-        profile_form = UserProfileForm(request.POST)
+        if register_personnel:
+            value='personal'
+        elif register_organization:
+            value='organization'
+        profile_form = UserProfileForm(initial={'account_type': value})
     context = {'form': form, 'profile_form': profile_form}
     return render(request, 'users/register.html', context)
 

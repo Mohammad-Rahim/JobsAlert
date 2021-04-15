@@ -13,7 +13,7 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-
+from django.utils import timezone
 
 class PostListView(ListView):
     model = Post
@@ -34,7 +34,7 @@ class PostListView(ListView):
         else:
             posts =  Post.objects.all()
 
-        self.object_list = posts
+        self.object_list = posts.filter(due_date__gte=timezone.now()).order_by('-date_posted')
 
         allow_empty = self.get_allow_empty()
         if not allow_empty:

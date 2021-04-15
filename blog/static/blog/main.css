@@ -1,211 +1,215 @@
 body {
-    background: #fafafa;
-    color: #333333;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: #444444;
-  }
-  
-  ul {
-    margin: 0;
-  }
-  
-  .bg-light {
-    /* background-color: #5f788a; */
-    background-color: #00acee !important;
-  }
-  
-  .site-header .navbar-nav .nav-link {
-    color: #cbd5db;
-  }
-  
-  .site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
-  }
-  
-  .site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
-  }
-  
-  #Sidebar{
-    margin-top: 116px;
-  }
+  background: #fafafa;
+  color: #333333;
+}
 
-  .content-section {
-    background: #ffffff;
-    padding: 10px 20px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px;
-  }
-  
-  .article-title {
-    color: #444444;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #444444;
+}
 
-  .author-title {
-    color: #00acee;
-    /* font-style: italic; */
-    font-family: cursive;
-  }
+ul {
+  margin: 0;
+}
 
-  .article-date {
-    font-style: italic;
-  }
-  
-  a.article-title:hover {
-    color: #428bca;
-    text-decoration: none;
-  }
-  
-  .article-content {
-    white-space: pre-line;
-  }
-  
-  .article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-  }
-  
-  .article-metadata {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
-  }
-  
-  .article-metadata a:hover {
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-  }
-  
-  .account-img {
-    height: 125px;
-    width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
-  }
-  
-  .account-heading {
-    font-size: 2.5rem;
-  }
+.bg-light {
+  /* background-color: #5f788a; */
+  background-color: #00acee !important;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+#navbarSupportedContent > ul > li:last-child {
+  float: right !important;
+  position: absolute !important;
+}
 
 
-  .btn-info.custom-btn {
-    background-color:red;
-    border-color: yellow;
-  }
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
 
+.article-title {
+  color: #444444;
+}
 
-  #total-orders{
-    background-color: #4cb4c7;
-  }
+.author-title {
+  color: #00acee;
+  /* font-style: italic; */
+  font-family: cursive;
+}
 
+.article-date {
+  font-style: italic;
+}
 
-  #orders-delivered{
-    background-color: #7abecc;
-  }
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
 
-  #orders-pending{
-    background-color: #7CD1C0;
-  }
+.article-content {
+  white-space: pre-line;
+}
 
-  .footer-dark {
-    padding: 50px 0;
-    color: #f0f9ff;
-    background-color: #282d32;
-    /* width: 100%;
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.btn-info.custom-btn {
+  background-color: red;
+  border-color: yellow;
+}
+
+#total-orders {
+  background-color: #4cb4c7;
+}
+
+#orders-delivered {
+  background-color: #7abecc;
+}
+
+#orders-pending {
+  background-color: #7cd1c0;
+}
+
+.footer-dark {
+  padding: 50px 0;
+  color: #f0f9ff;
+  background-color: #282d32;
+  /* width: 100%;
     margin-left: auto;
     margin-right: auto; */
 }
 
 .footer-dark h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-weight: bold;
-    font-size: 16px
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .footer-dark ul {
-    padding: 0;
-    list-style: none;
-    line-height: 1.6;
-    font-size: 14px;
-    margin-bottom: 0
+  padding: 0;
+  list-style: none;
+  line-height: 1.6;
+  font-size: 14px;
+  margin-bottom: 0;
 }
 
 .footer-dark ul a {
-    color: inherit;
-    text-decoration: none;
-    opacity: 0.6
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.6;
 }
 
 .footer-dark ul a:hover {
-    opacity: 0.8
+  opacity: 0.8;
 }
 
-@media (max-width:767px) {
-    .footer-dark .item:not(.social) {
-        text-align: center;
-        padding-bottom: 20px
-    }
+@media (max-width: 767px) {
+  .footer-dark .item:not(.social) {
+    text-align: center;
+    padding-bottom: 20px;
+  }
 }
 
 .footer-dark .item.text {
-    margin-bottom: 36px
+  margin-bottom: 36px;
 }
 
-@media (max-width:767px) {
-    .footer-dark .item.text {
-        margin-bottom: 0
-    }
+@media (max-width: 767px) {
+  .footer-dark .item.text {
+    margin-bottom: 0;
+  }
 }
 
 .footer-dark .item.text p {
-    opacity: 0.6;
-    margin-bottom: 0
+  opacity: 0.6;
+  margin-bottom: 0;
 }
 
 .footer-dark .item.social {
-    text-align: center
+  text-align: center;
 }
 
-@media (max-width:991px) {
-    .footer-dark .item.social {
-        text-align: center;
-        margin-top: 20px
-    }
-}
-
-.footer-dark .item.social>a {
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    display: inline-block;
+@media (max-width: 991px) {
+  .footer-dark .item.social {
     text-align: center;
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
-    margin: 0 8px;
-    color: #fff;
-    opacity: 0.75
+    margin-top: 20px;
+  }
 }
 
-.footer-dark .item.social>a:hover {
-    opacity: 0.9
+.footer-dark .item.social > a {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  margin: 0 8px;
+  color: #fff;
+  opacity: 0.75;
+}
+
+.footer-dark .item.social > a:hover {
+  opacity: 0.9;
 }
 
 .footer-dark .copyright {
-    text-align: center;
-    padding-top: 24px;
-    opacity: 0.3;
-    font-size: 13px;
-    margin-bottom: 0
+  text-align: center;
+  padding-top: 24px;
+  opacity: 0.3;
+  font-size: 13px;
+  margin-bottom: 0;
 }

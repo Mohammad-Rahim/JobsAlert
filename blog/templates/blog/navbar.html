@@ -1,0 +1,60 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'blog-home' %}">Jobs Alert</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+      </li>
+     
+      
+       {% if user.is_authenticated %}
+            {% if user.profile.account_type == "organization" %}
+              <a class="nav-item nav-link" href="{% url 'post-create' %}">Post Job</a>
+              <!-- <a href="{% url 'profile' %}" class="avatar avatar-xs rounded-circle">
+                <img alt="Image placeholder" src="{{ user.profile.image.url }}"
+                  style="width: 40px; border-radius: 400px "></a> -->
+              <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+              <!-- <a href="{% url 'profile' %}" class="avatar avatar-xs rounded-circle">
+                <img alt="Image placeholder" src="{{ user.profile.image.url }}"
+                  style="width: 40px; border-radius: 400px "></a> -->
+              <a class="nav-item nav-link active" href="{% url 'profile' %}">Profile</a>
+              <a class="nav-item nav-link active" href="{% url 'logout' %}">Logout</a>
+            {% endif %}
+            {% else %}
+            <a class="nav-item active nav-link" href="{% url 'login' %}">Login</a>
+            {% comment %} <a class="nav-item nav-link" href="{% url 'register' %}">Register</a> {% endcomment %}
+            
+            <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Register
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'register' %}?register_personnel=True">Personnel</a>
+            <a class="dropdown-item" href="{% url 'register' %}?register_organization=True">Organization</a>
+          
+          </li>
+
+            {% endif %}
+    
+      </div>
+    </ul>
+     
+     <form class="form-inline my-2 my-lg-0" action="{% url 'job-search' %}">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    
+  </div>
+</nav>
+  </header>

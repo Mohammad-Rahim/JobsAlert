@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
   <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
   {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'blog/search.css' %}"> {% endcomment %}
@@ -24,65 +25,13 @@
 </head>
 
 <body>
-  <header class="site-header">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'blog-home' %}">Jobs Alert</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'blog-about' %}">About</a>
-      </li>
-
-      <form class="form-inline my-2 my-lg-0" action="{% url 'job-search' %}">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      {% if user.is_authenticated %}
-            {% if user.profile.account_type == "organization" %}
-              <a class="nav-item nav-link" href="{% url 'post-create' %}">Post Job</a>
-              <!-- <a href="{% url 'profile' %}" class="avatar avatar-xs rounded-circle">
-                <img alt="Image placeholder" src="{{ user.profile.image.url }}"
-                  style="width: 40px; border-radius: 400px "></a> -->
-              <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-            {% else %}
-              <!-- <a href="{% url 'profile' %}" class="avatar avatar-xs rounded-circle">
-                <img alt="Image placeholder" src="{{ user.profile.image.url }}"
-                  style="width: 40px; border-radius: 400px "></a> -->
-              <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-            {% endif %}
-            {% else %}
-            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-            {% endif %}
-    </ul>
-    
-  </div>
-</nav>
-  </header>
+  
+  {% include 'blog/navbar.html' %}
   
   <main role="main">
+  <div style="height:150px">
+  <p class=" text-center py-3 display-4">{{request.GET.category.upper}}Jobs</p>
+  </div>
     <div class="row">
       <div class="col-md-8">
       <div class="container">
@@ -101,23 +50,27 @@
       <div class="col-md-4" id="Sidebar">
         <div class="content-section">
           <h3>Hot Jobs</h3>
-          <p class='text-muted'>You can put any information here you'd like.
+          <p class='text-muted'>Upcoming Jobs
           <ul class="list-group">
-            <li class="list-group-item list-group-item-light" >Latest Posts</li>
-            <li class="list-group-item list-group-item-light">Announcements</li>
-            <li class="list-group-item list-group-item-light">Calendars</li>
-            <li class="list-group-item list-group-item-light">etc</li>
+            {% for job in hot_box_posts %}
+              <li class="list-group-item list-group-item-light" >
+              <a class="" href="{% url 'post-detail' job.id %}">{{ job.title }}</a>
+              <span class="ml-2 badge badge-success">{{job.category}}</span>
+              <div class="small">{{job.due_date|naturaltime}}</div>
+              </li>
+            {% endfor %}
           </ul>
           </p>
         </div>
       </div>
     </div>
 
-    <footer class="footer-dark footer-dark-expand-md">
+    <hr style="border:1px solid grey;"/>
+    <footer class="footer-light footer-light-expand-md" style="background: url('{% static 'images/wave.svg' %}');background-size: cover;">
             <div class="container">
-            <div class="row">
+            <div class="row" style="min-height:200px;">
                 <div class="col-md-3 item">
-                    <h3>Job By Categories</h3>
+                    <h3 class="h6">Job By Categories</h3>
                     <ul>
                         <li><a href="{% url 'blog-home' %}?category=it">IT Jobs</a></li>
                         <li><a href="{% url 'blog-home' %}?category=hospitality">Hospitality Jobs</a></li>
@@ -125,7 +78,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3 item">
-                    <h3>Job By CIties</h3>
+                    <h3 class="h6">Job By CIties</h3>
                     <ul>
                         <li><a href="#">Kathmandu</a></li>
                         <li><a href="#">Pokhara</a></li>
@@ -133,7 +86,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3 item">
-                    <h3>Job By Types</h3>
+                    <h3 class="h6">Job By Types</h3>
                     <ul>
                         <li><a href="#">FullTime</a></li>
                         <li><a href="#">Contract</a></li>
@@ -141,13 +94,13 @@
                     </ul>
                 </div>
                 <div class="col-md-3 item text">
-                    <h3>JobsAlert.com</h3>
+                    <h3 class="h6">JobsAlert.com</h3>
                     <p>In the middle of difficulty lies opportunity.</p>
                 </div>
                 <div class="col item social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-youtube"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-google"></i></a></div>
             </div>
             </div>
-            <p class="copyright">JobsAlert.com © 2021</p>
+            <p class="copyright text-center">JobsAlert.com © 2021</p>
     </footer>
 
   </main>

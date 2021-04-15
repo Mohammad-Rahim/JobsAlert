@@ -1,21 +1,20 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-
-<div style="position:relative;">
-<p class="py-3 display-4">{{request.GET.category.upper}} Jobs</p>
-</div>
 {% for post in posts %}
 
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+    <img class="rounded-circle article-img" src="{{ post.category.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2 author-title" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
             <small class="text-muted article-date">{{ post.date_posted|date:"F d, Y" }}</small>
+            <small class="ml-5 text-muted ">{{post.get_application_count}} applicants applying</small>
+            <small class="ml-5 text-muted ">Apply before: {{ post.due_date|date:"F d, Y" }}</small>
+            
         </div>
-        <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content|safe| truncatechars:500 }}</p>
+        <h2><a class="h4" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+        <p class="article-content">{{ post.content|safe| truncatewords:50 }}</p>
     </div>
 </article>
 {% endfor %}
