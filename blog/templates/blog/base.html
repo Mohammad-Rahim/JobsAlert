@@ -30,7 +30,7 @@
   
   <main role="main">
   <div style="height:150px">
-  <p class=" text-center py-3 display-4">{{request.GET.category.upper}}Jobs</p>
+  <p class=" text-center py-3 display-4" style="font-family: 'Pacifico', cursive; !important">{{request.GET.category.upper}}Jobs</p>
   </div>
     <div class="row">
       <div class="col-md-8">
@@ -49,8 +49,7 @@
       </div>
       <div class="col-md-4" id="Sidebar">
         <div class="content-section">
-          <h3>Hot Jobs</h3>
-          <p class='text-muted'>Upcoming Jobs
+          <h3>Upcoming Jobs</h3>
           <ul class="list-group">
             {% for job in hot_box_posts %}
               <li class="list-group-item list-group-item-light" >
@@ -62,10 +61,24 @@
           </ul>
           </p>
         </div>
+
+        <div class="content-section">
+          <h3>Hot Jobs</h3>
+          <ul class="list-group">
+            {% for job in hot_box_posts_second %}
+              <li class="list-group-item list-group-item-light" >
+              <a class="" href="{% url 'post-detail' job.id %}">{{ job.title }}</a>
+              <span class="ml-2 badge badge-success">{{job.category}}</span>
+              <div class="small">{{job.num_applicants}} applicants</div>
+              </li>
+            {% endfor %}
+          </ul>
+          </p>
+        </div>
       </div>
     </div>
 
-    <hr style="border:1px solid grey;"/>
+    <hr style="border:1px solid grey;" class="mb-5"/>
     <footer class="footer-light footer-light-expand-md" style="background: url('{% static 'images/wave.svg' %}');background-size: cover;">
             <div class="container">
             <div class="row" style="min-height:200px;">

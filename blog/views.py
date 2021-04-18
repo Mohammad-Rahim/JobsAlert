@@ -14,8 +14,9 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
-class PostListView(ListView):
+class PostListView(ListView, LoginRequiredMixin):
     model = Post
     template_name = 'blog/home.html'
     context_object_name = 'posts'
@@ -63,13 +64,13 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(DetailView, LoginRequiredMixin):
     model = Post
     
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'due_date', 'category']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -103,6 +104,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
+@login_required(login_url='/login')
 def job_apply(request, pk):
     if request.method=="POST" and request.FILES['myfile']:
 
