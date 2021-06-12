@@ -36,6 +36,7 @@ def register(request):
             # messages.success(request, f'Your account has been created successfully! You can now log in.')
             # return redirect('login')
     else:
+        value = 'personal'
         form = UserRegisterForm()
         if register_personnel:
             value='personal'
