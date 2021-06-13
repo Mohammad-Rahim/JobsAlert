@@ -147,7 +147,7 @@ EMAIL_HOST_USER = "alertjob00@gmail.com"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = "********"
+EMAIL_HOST_PASSWORD = "**********"
 
 INTERNAL_IPS = [
     '127.0.0.1',
