@@ -28,7 +28,7 @@ class Post(models.Model):
     )
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    due_date = models.DateTimeField()
+    due_date = models.DateField(help_text="format (YYYY-MM-dd)")
 
     def __str__(self):
         return self.title

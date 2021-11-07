@@ -78,7 +78,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'due_date']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -106,6 +106,10 @@ def about(request):
 
 @login_required(login_url='/login')
 def job_apply(request, pk):
+    context = {
+        'profile_email' : request.user.email,
+        'profile_username' : request.user.username
+    }
     if request.method=="POST" and request.FILES['myfile']:
 
         myfile = request.FILES['myfile']
@@ -124,7 +128,7 @@ def job_apply(request, pk):
         apply_job.save()
         messages.success(request, "Your application has been posted successfully!!")
 
-    return render(request, 'blog/job_apply.html',)
+    return render(request, 'blog/job_apply.html', context)
 
 def job_search(request):
     query = request.GET['query']
