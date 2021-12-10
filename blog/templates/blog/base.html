@@ -55,6 +55,7 @@
               <li class="list-group-item list-group-item-light" >
               <a class="" href="{% url 'post-detail' job.id %}">{{ job.title }}</a>
               <span class="ml-2 badge badge-success">{{job.category}}</span>
+              {% comment %} <div class="small">{{job.due_date|naturaltime}}</div> {% endcomment %}
               <div class="small">{{job.due_date}}</div>
               </li>
             {% endfor %}
